@@ -9,6 +9,7 @@ import TaskManager.YaGanaste.Entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +47,26 @@ public class TaskRestController {
     
     
 }
+    
+    @GetMapping("{IdTask}")
+    public ResponseEntity GetById(@PathVariable ("IdTask") int IdTask){
+        try {
+            Result result = taskDAOJPAImplementation.GetById(IdTask);
+
+            if (result.correct) {
+                if (result.object != null) {
+                    return ResponseEntity.ok(result);
+                } else {
+                    return ResponseEntity.notFound().build();
+                }
+            } else {
+                return ResponseEntity.badRequest().body(result.errorMessage);
+            }
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e);
+        }
+    }
 }
     
 
