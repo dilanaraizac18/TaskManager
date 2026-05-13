@@ -4,10 +4,10 @@
  */
 package TaskManager.YaGanaste.Entity.Repository;
 
-/**
- *
- * @author digis
- */
+import TaskManager.YaGanaste.Entity.Result;
+
+
 public interface ITask {
+    Result GetAll();
     
 }

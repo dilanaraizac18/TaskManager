@@ -9,10 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- *
- * @author digis
- */
+
 class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
