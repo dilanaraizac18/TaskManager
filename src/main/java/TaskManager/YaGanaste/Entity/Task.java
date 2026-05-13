@@ -5,30 +5,35 @@
 package TaskManager.YaGanaste.Entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import java.util.Date;
 
-
+@Entity
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTask")
+    @Column(name = "idtask")
 
     private int IdTask;
 
-    @Column(name = "Tittle")
+    @Column(name = "tittle")
     private String Tittle;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String Description;
 
-    @Column(name = "Status")
+    
+    @OneToOne
+    @JoinColumn(name="idstatus")
     private Status Status;
 
-    @Column(name = "CreationDate")
+    @Column(name = "creationdate")
     private Date CreationDate;
 
     public Task(){}

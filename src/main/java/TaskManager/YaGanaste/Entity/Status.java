@@ -5,18 +5,19 @@
 package TaskManager.YaGanaste.Entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
+@Entity
 class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="IdStatus")
+    @Column(name="idstatus")
     public int IdStatus;
     
-    @Column(name="StatusName")
+    @Column(name="statusname")
     public String StatusName;
 
     public Status(){}

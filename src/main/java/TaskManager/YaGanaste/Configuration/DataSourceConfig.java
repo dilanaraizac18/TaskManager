@@ -20,8 +20,8 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
-        dataSource.setUsername("DAraizaProgramacionNCapas");
-        dataSource.setPassword("password1");
+        dataSource.setUsername("TaskManager");
+        dataSource.setPassword("youWintask");
         
         return dataSource;
     }
