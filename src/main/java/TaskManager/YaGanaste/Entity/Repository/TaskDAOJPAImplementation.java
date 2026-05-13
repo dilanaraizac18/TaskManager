@@ -10,11 +10,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class TaskDAOJPAImplementation implements ITask{
+    
     
     @Autowired
     private EntityManager entityManager;
@@ -40,6 +42,35 @@ public class TaskDAOJPAImplementation implements ITask{
             result.correct = false;
             result.errorMessage = ex.getLocalizedMessage();
             result.ex = ex;
+        }
+        
+        return result;
+        
+    }
+
+    @Override
+    public Result GetById(int idTask) {
+        Result result = new Result();
+        
+        try{
+            
+            Task task = entityManager.find(Task.class, idTask);
+            
+            if(task != null){
+                
+                result.correct = true;
+                result.object = task;
+            } else{
+                
+                result.correct = false;
+                result.errorMessage = "No existe la tarea";
+            }
+            
+        }catch(Exception ex){
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            
         }
         
         return result;
