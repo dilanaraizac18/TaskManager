@@ -8,6 +8,8 @@ import TaskManager.YaGanaste.Entity.Result;
 import TaskManager.YaGanaste.Entity.Task;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.TransactionScoped;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
@@ -75,6 +77,31 @@ public class TaskDAOJPAImplementation implements ITask{
         
         return result;
         
+    }
+
+    @Override
+    @Transactional
+    public Result Delete(int idTask) {
+        Result result = new Result();
+        
+           try{
+            Task task = entityManager.find(Task.class, idTask);
+            
+            entityManager.remove(task);
+            result.correct = true;
+            
+        }catch(Exception ex){
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            
+        }
+        
+        
+        
+        
+        
+        return result;
     }
     
 }

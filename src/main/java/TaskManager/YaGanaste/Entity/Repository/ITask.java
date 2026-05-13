@@ -10,5 +10,6 @@ import TaskManager.YaGanaste.Entity.Result;
 public interface ITask {
     Result GetAll();
     Result GetById(int idTask);
+    Result Delete(int idTask);
     
 }
