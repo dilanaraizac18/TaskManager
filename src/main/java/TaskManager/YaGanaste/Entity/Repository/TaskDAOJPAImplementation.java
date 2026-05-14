@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package TaskManager.YaGanaste.Entity.Repository;
 
 import TaskManager.YaGanaste.Entity.Result;
@@ -109,7 +105,7 @@ public class TaskDAOJPAImplementation implements ITask {
             newtask.setDescription(task.getDescription());
             Status status = entityManager.find(Status.class, task.Status.IdStatus);
             newtask.Status = status;
-//            newtask.Status.setIdStatus(task.getIdTask());
+
 
             entityManager.persist(newtask);
             result.correct = true;

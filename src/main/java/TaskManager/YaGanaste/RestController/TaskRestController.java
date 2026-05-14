@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package TaskManager.YaGanaste.RestController;
 
 import TaskManager.YaGanaste.Entity.Repository.TaskDAOJPAImplementation;
@@ -83,7 +79,7 @@ public class TaskRestController {
         Result result = taskDAOJPAImplementation.Add(task);
 
         if (result.correct) {
-            return ResponseEntity.ok(result.object);
+            return ResponseEntity.ok(result);
         } else {
             return ResponseEntity.badRequest().body(result.errorMessage);
         }
