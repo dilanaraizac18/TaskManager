@@ -31,7 +31,7 @@ public class Task {
     
     @OneToOne
     @JoinColumn(name="idstatus")
-    private Status Status;
+    public Status Status;
 
     @Column(name = "creationdate")
     private Date CreationDate;

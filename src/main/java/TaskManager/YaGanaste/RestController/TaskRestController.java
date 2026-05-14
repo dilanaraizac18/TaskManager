@@ -6,11 +6,14 @@ package TaskManager.YaGanaste.RestController;
 
 import TaskManager.YaGanaste.Entity.Repository.TaskDAOJPAImplementation;
 import TaskManager.YaGanaste.Entity.Result;
+import TaskManager.YaGanaste.Entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -85,4 +88,23 @@ public class TaskRestController {
             return ResponseEntity.status(500).body(ex);
         }
     }
+
+    @PostMapping()
+    public ResponseEntity Add(@RequestBody Task task) {
+
+        try {
+
+            Result result = taskDAOJPAImplementation.Add(task);
+
+            if (result.correct) {
+                return ResponseEntity.ok(result.object);
+            } else {
+                return ResponseEntity.badRequest().body(result.errorMessage);
+            }
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e);
+        }
+    }
+
 }

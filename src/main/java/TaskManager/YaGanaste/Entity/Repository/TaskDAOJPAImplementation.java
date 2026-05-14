@@ -5,10 +5,10 @@
 package TaskManager.YaGanaste.Entity.Repository;
 
 import TaskManager.YaGanaste.Entity.Result;
+import TaskManager.YaGanaste.Entity.Status;
 import TaskManager.YaGanaste.Entity.Task;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,12 +96,36 @@ public class TaskDAOJPAImplementation implements ITask{
             result.ex = ex;
             
         }
-        
-        
-        
-        
-        
         return result;
     }
+
+    @Override
+    @Transactional
+    public Result Add(Task task) {
+        Result result = new Result();
+        
+        try{
+            Task newtask = new Task();
+            
+            newtask.setTittle(task.getTittle());
+            newtask.setDescription(task.getDescription());
+            Status status = entityManager.find(Status.class, task.Status.IdStatus);
+            newtask.Status = status;
+//            newtask.Status.setIdStatus(task.getIdTask());
+            
+            entityManager.persist(newtask);
+            result.correct = true;
+            
+        }catch(Exception ex){
+            result.correct= false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+
+
+        return result;
+    }
+    
+    
     
 }
