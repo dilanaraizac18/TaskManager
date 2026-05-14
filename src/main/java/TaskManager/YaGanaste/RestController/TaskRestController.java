@@ -31,99 +31,75 @@ public class TaskRestController {
 
         Result result = new Result();
 
-        try {
+        result = taskDAOJPAImplementation.GetAll();
 
-            result = taskDAOJPAImplementation.GetAll();
+        if (result.correct) {
 
-            if (result.correct) {
-
-                if (result.objects != null || !result.objects.isEmpty()) {
-                    return ResponseEntity.ok(result);
-                } else {
-                    return ResponseEntity.noContent().build();
-                }
-
+            if (result.objects != null || !result.objects.isEmpty()) {
+                return ResponseEntity.ok(result);
             } else {
-                return ResponseEntity.badRequest().body(result.errorMessage);
+                return ResponseEntity.noContent().build();
             }
 
-        } catch (Exception ex) {
-            return ResponseEntity.status(500).body(ex);
+        } else {
+            return ResponseEntity.badRequest().body(result.errorMessage);
         }
 
     }
 
     @GetMapping("{IdTask}")
     public ResponseEntity GetById(@PathVariable("IdTask") int IdTask) {
-        try {
-            Result result = taskDAOJPAImplementation.GetById(IdTask);
+        Result result = taskDAOJPAImplementation.GetById(IdTask);
 
-            if (result.correct) {
-                if (result.object != null) {
-                    return ResponseEntity.ok(result);
-                } else {
-                    return ResponseEntity.notFound().build();
-                }
+        if (result.correct) {
+            if (result.object != null) {
+                return ResponseEntity.ok(result);
             } else {
-                return ResponseEntity.badRequest().body(result.errorMessage);
+                return ResponseEntity.notFound().build();
             }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(e);
+        } else {
+            return ResponseEntity.badRequest().body(result.errorMessage);
         }
+
     }
 
     @DeleteMapping("{IdTask}")
     public ResponseEntity Delete(@PathVariable("IdTask") int IdTask) {
 
-        try {
+        Result result = taskDAOJPAImplementation.Delete(IdTask);
 
-            Result result = taskDAOJPAImplementation.Delete(IdTask);
-
-            if (result.correct) {
-                return ResponseEntity.ok(result);
-            } else {
-                return ResponseEntity.badRequest().body(result.errorMessage);
-            }
-
-        } catch (Exception ex) {
-            return ResponseEntity.status(500).body(ex);
+        if (result.correct) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result.errorMessage);
         }
+
     }
 
     @PostMapping()
     public ResponseEntity Add(@RequestBody Task task) {
 
-        try {
+        Result result = taskDAOJPAImplementation.Add(task);
 
-            Result result = taskDAOJPAImplementation.Add(task);
-
-            if (result.correct) {
-                return ResponseEntity.ok(result.object);
-            } else {
-                return ResponseEntity.badRequest().body(result.errorMessage);
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(e);
+        if (result.correct) {
+            return ResponseEntity.ok(result.object);
+        } else {
+            return ResponseEntity.badRequest().body(result.errorMessage);
         }
+
     }
-    
+
     @PutMapping("/{IdTask}")
-    public ResponseEntity Update(@RequestBody Task task, @PathVariable ("IdTask") int IdTask){
-        try{
-            Result result = taskDAOJPAImplementation.Update(task);
-            
-            if(result.correct){
-                return ResponseEntity.ok(result);
-            } else{
-                return ResponseEntity.badRequest().body(result.errorMessage);
-            
+    public ResponseEntity Update(@RequestBody Task task, @PathVariable("IdTask") int IdTask) {
+        Result result = taskDAOJPAImplementation.Update(task);
+
+        if (result.correct) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result.errorMessage);
+
         }
-        } catch(Exception ex){
-         return ResponseEntity.status(500).body(ex);
-        }
+
     }
-    
 
 }
