@@ -13,5 +13,6 @@ public interface ITask {
     Result GetById(int idTask);
     Result Delete(int idTask);
     Result Add(Task task);
+    Result Update(Task task);
     
 }
