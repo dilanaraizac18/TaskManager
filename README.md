@@ -35,6 +35,7 @@ Esta API Rest ha sido desarrollada con Spring Framework, con el fin de gestionar
       dataSource.setUsername("nombreDeUsuario");
       dataSource.setPassword("tuContraseña");
      ```
+   > **Nota:** La ruta al script de creación de base de datos se encuentra en `src/main/resources/db/migration/TaskManager.sql`.
 
 3. **Ejecutar la aplicación:**
    ```bash
