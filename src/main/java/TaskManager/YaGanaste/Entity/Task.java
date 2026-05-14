@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.util.Date;
@@ -88,6 +89,13 @@ public class Task {
 
     public void setCreationDate(Date CreationDate) {
         this.CreationDate = CreationDate;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.CreationDate == null) {
+            this.CreationDate = new Date(); 
+        }
     }
 
 }
