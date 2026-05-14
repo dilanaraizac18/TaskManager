@@ -7,6 +7,7 @@ package TaskManager.YaGanaste.RestController;
 import TaskManager.YaGanaste.Entity.Repository.TaskDAOJPAImplementation;
 import TaskManager.YaGanaste.Entity.Result;
 import TaskManager.YaGanaste.Entity.Task;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,7 +78,7 @@ public class TaskRestController {
     }
 
     @PostMapping()
-    public ResponseEntity Add(@RequestBody Task task) {
+    public ResponseEntity Add(@Valid @RequestBody Task task) {
 
         Result result = taskDAOJPAImplementation.Add(task);
 
@@ -90,7 +91,7 @@ public class TaskRestController {
     }
 
     @PutMapping("/{IdTask}")
-    public ResponseEntity Update(@RequestBody Task task, @PathVariable("IdTask") int IdTask) {
+    public ResponseEntity Update(@Valid @RequestBody Task task, @PathVariable("IdTask") int IdTask) {
         Result result = taskDAOJPAImplementation.Update(task);
 
         if (result.correct) {

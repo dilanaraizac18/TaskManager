@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -19,16 +21,17 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtask")
-
     private int IdTask;
 
+    @NotBlank(message = "El título es obligatorio")
     @Column(name = "tittle")
     private String Tittle;
-
+    
+    @Size(min = 5, max = 100, message = "La descripción debe tener entre 5 y 100 caracteres")
     @Column(name = "description")
     private String Description;
 
-    
+    @NotBlank(message = "Debe introducir un rol")
     @OneToOne
     @JoinColumn(name="idstatus")
     public Status Status;
