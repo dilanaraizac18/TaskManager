@@ -24,23 +24,24 @@ public class Task {
     private int IdTask;
 
     @NotBlank(message = "El título es obligatorio")
+    @Size(min = 0, max = 100, message = "El titulo no debe tener más de 100 caracteres")
     @Column(name = "tittle")
     private String Tittle;
-    
-    @Size(min = 5, max = 100, message = "La descripción debe tener entre 5 y 100 caracteres")
+
+    @Size(min = 0, max = 200, message = "La descripción no debe tener más de 200 caracteres")
     @Column(name = "description")
     private String Description;
 
-    @NotBlank(message = "Debe introducir un rol")
     @OneToOne
-    @JoinColumn(name="idstatus")
+    @JoinColumn(name = "idstatus")
     public Status Status;
 
     @Column(name = "creationdate")
     private Date CreationDate;
 
-    public Task(){}
-    
+    public Task() {
+    }
+
     public Task(int IdTask, String Tittle, String Description, Status Status, Date CreationDate) {
         this.IdTask = IdTask;
         this.Tittle = Tittle;
@@ -88,9 +89,5 @@ public class Task {
     public void setCreationDate(Date CreationDate) {
         this.CreationDate = CreationDate;
     }
-    
-    
-    
-    
 
 }
