@@ -131,12 +131,11 @@ public class TaskDAOJPAImplementation implements ITask {
         try {
             Task newtask = entityManager.find(Task.class, task.getIdTask());
 
-  
             Status status = entityManager.find(Status.class, task.Status.IdStatus);
             task.Status = status;
             task.setIdTask(newtask.getIdTask());
             task.setCreationDate(newtask.getCreationDate());
-            
+
             entityManager.merge(task);
 
             result.correct = true;
