@@ -31,9 +31,9 @@ Esta API Rest ha sido desarrollada con Spring Framework, con el fin de gestionar
 2. **Configurar el entorno**
    - Edita el archivo `src/main/java/TaskManager/YaGanaste/Configuration/DataSourceConfig.java` con tus credenciales de base de datos:
    ```java
-    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
-        dataSource.setUsername("nombreDeUsuario");
-        dataSource.setPassword("tuContraseña");
+      dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+      dataSource.setUsername("nombreDeUsuario");
+      dataSource.setPassword("tuContraseña");
      ```
 
 3. **Ejecutar la aplicación:**
